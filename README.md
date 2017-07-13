@@ -13,3 +13,5 @@ The code comprises the following:
 
   - [genTeleportationData](https://github.com/paulskrzypczyk/nonclassicalteleportation/blob/master/genTeleportationData.m): generates the unnormalised states prepared for Bob, when Alice performs a joint measurement on the (unknown) input state and her half of a shared state.
   - [teleportationRandomRobustness](https://github.com/paulskrzypczyk/nonclassicalteleportation/blob/master/teleportationRandomRobustness.m): calculates the random teleportation robustness of a given set of teleportation data. 
+  
+Slides from a presentation about this work can be found [here](https://github.com/paulskrzypczyk/Talks/blob/master/Teleportation%20-%20TyQI%202017.pdf).
