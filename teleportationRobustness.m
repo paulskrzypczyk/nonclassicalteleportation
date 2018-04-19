@@ -1,5 +1,5 @@
-function TR = teleportationRandomRobustness(sigax,omegax,varargin)
-%TELEPORTATIONRANDOMROBUSTNESS calculates the random teleportation
+function TR = teleportationRobustness(sigax,omegax,varargin)
+%TELEPORTATIONROBUSTNESS calculates the generalised teleportation
 %robustness of a set of teleportation data
 %  This function has two required arguments:
 %  sigax: a 4-D array, containing the unnormalised teleported states. The 
@@ -10,14 +10,14 @@ function TR = teleportationRandomRobustness(sigax,omegax,varargin)
 %  first two dimensions contain the unknown states, while the remaining
 %  dimension is x, such that psix(:,:,x) = psi_x;
 %
-% TR = teleportationRandomRobustness(sigax,omegax) returns the random
+% TR = teleportationRobustness(sigax,omegax) returns the generalised
 % teleportation robustness of the teleportation data sigax and omegax.
 %
 % This function has one optional argument:
 %   k: (default 1)
 %
-% TR = teleportationRandomRobustness(sigax,omegax,k) calculates the
-% random teleportation robustness demanding that the operators MaVB 
+% TR = teleportationRobustness(sigax,omegax,k) calculates the
+% generalised teleportation robustness demanding that the operators MaVB 
 % have a k-symmetric PPT extension, as a relaxation of separability. The
 % default case k=1 only imposes PPT as the relaxation of separability.
 %
@@ -35,27 +35,34 @@ function TR = teleportationRandomRobustness(sigax,omegax,varargin)
 
 cvx_begin sdp quiet
 
-    variable Ma(dV*dB,dV*dB,oa) hermitian
-    variable pa(oa,1) nonnegative
+    variable Ma(dV*dB,dV*dB,oa) hermitian % M_a^VB
+    variable Na(dV*dB,dV*dB,oa) hermitian % N_a^VB
+    variable rhoB(dB,dB) hermitian semidefinite 
     
-    minimise sum(pa)
+    minimise trace(rhoB) 
     
     subject to
     
     for x = 1:ma
         for a = 1:oa
-            sigax(:,:,a,x) + pa(a)*eye(dB)/dB == PartialTrace(Ma(:,:,a)*Tensor(omegax(:,:,x),eye(dB)),1,[dV,dB])
+            sigax(:,:,a,x) == PartialTrace((-Ma(:,:,a)+Na(:,:,a))*...
+                Tensor(omegax(:,:,x),eye(dB)),1,[dV,dB])
         end
     end
-    % sig_a|omega_x + p(a) Id/d == tr_V[(omega_x otimes Id)Ma]
+    % sig_a|x + tr_V[M_a(omega_x otimes Id)] = tr_V[N_a(omega_x otimes Id)]
     
-    sum(Ma,3) == Tensor(eye(dV),sum(sigax(:,:,:,1),3) + sum(pa)*eye(dB)/dB)
-    % sum_a Ma = Id otimes (sum_a sig_a|omega_x + sum_a p(a) Id/d)
-    % (no-signalling + consistency with data)
+    sum(Ma,3) == Tensor(eye(dV),rhoB)
+    % sum_a M_a = Id otimes rhoB (no-signalling)
+    
+    sum(Na,3) == Tensor(eye(dV),sum(sigax(:,:,:,1),3) + rhoB)
+    % sum_a N_a = Id otimes (sum_a sig_a|omega_1 + rhoB)
+    % (no-signalling in conjunction with consistency)
     
     for a = 1:oa
-        SymmetricExtension(Ma(:,:,a),k,[dV,dB],1,1) == 1;
-        % Ma should be approximately separable 
+        SymmetricExtension(Na(:,:,a),k,[dV,dB],1,1) == 1;
+        % each N_a should have a k-symmetric PPT extension
+        PartialTranspose(Ma(:,:,a)) == hermitian_semidefinite(dV*dB)
+        % each M_a should be PPT 
     end
     
 cvx_end
