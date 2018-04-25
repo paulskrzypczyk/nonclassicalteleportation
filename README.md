@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-### Code to accompany *[All entangled states can demonstrate non-classical teleportation](https://arxiv.org/abs/1607.03249)*
-#### Daniel Cavalcanti, Paul Skrzypczyk and Ivan Šupić
-
-This repository provides a (very) small collection of code which implements the semidefinite program presented in the article "*[All entangled states can demonstrate non-classical teleportation](https://arxiv.org/abs/1607.03249)*".
-=======
-### Code to accompany *[All Entangled States can Demonstrate Nonclassical Teleportation](https://doi.org/10.1103/PhysRevLett.119.110501)*
+### Code to accompany *[All entangled states can demonstrate non-classical teleportation](https://arxiv.org/abs/1607.03249)*  
 #### Daniel Cavalcanti, Paul Skrzypczyk and Ivan Šupić
 
 This repository provides a (very) small collection of code which implements the semidefinite program presented in the article  
