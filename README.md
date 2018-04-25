@@ -5,7 +5,6 @@ This repository provides a (very) small collection of code which implements the 
 *[All Entangled States can Demonstrate Nonclassical Teleportation](https://doi.org/10.1103/PhysRevLett.119.110501)*.  
 Daniel Cavalcanti, Paul Skrzypczyk, and Ivan Šupić  
 Phys. Rev. Lett. **119**, 110501 (2017)
->>>>>>> f91aebfb9a965131673e0c6d5cb84a8f98d37711
 
 All code is written in MATLAB and requires:
 - [CVX](http://cvxr.com/) - a Matlab-based convex modeling framework
