@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-### Code to accompany *[All entangled states can demonstrate non-classical teleportation](https://arxiv.org/abs/1607.03249)*
-#### Daniel Cavalcanti, Paul Skrzypczyk and Ivan Šupić
-
-This repository provides a (very) small collection of code which implements the semidefinite program presented in the article "*[All entangled states can demonstrate non-classical teleportation](https://arxiv.org/abs/1607.03249)*".
-=======
-### Code to accompany *[All Entangled States can Demonstrate Nonclassical Teleportation](https://doi.org/10.1103/PhysRevLett.119.110501)*
+### Code to accompany *[All entangled states can demonstrate non-classical teleportation](https://arxiv.org/abs/1607.03249)*  
 #### Daniel Cavalcanti, Paul Skrzypczyk and Ivan Šupić
 
 This repository provides a (very) small collection of code which implements the semidefinite program presented in the article  
 *[All Entangled States can Demonstrate Nonclassical Teleportation](https://doi.org/10.1103/PhysRevLett.119.110501)*.  
 Daniel Cavalcanti, Paul Skrzypczyk, and Ivan Šupić  
 Phys. Rev. Lett. **119**, 110501 (2017)
->>>>>>> f91aebfb9a965131673e0c6d5cb84a8f98d37711
 
 All code is written in MATLAB and requires:
 - [CVX](http://cvxr.com/) - a Matlab-based convex modeling framework
